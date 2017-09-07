@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load custom_markdown %}
+{% comment %}该页显示
+1.博文的详细内容
+{% endcomment %}
+{% block content %}
+    <p>
+        {{ article.content|custom_markdown }}
+    </p>
+{% endblock %}
