@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <ul class="list-unstyled">
+    {% for cate in category %}
+        <li>
+            <a href="{% url "archive" fil=cate.category %}">{{ cate.category }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+
+
+{% endblock %}

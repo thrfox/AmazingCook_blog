@@ -3,18 +3,30 @@
 
 {% block content %}
     {% for article in articles %}
-        <div>
-            <div>标题{{ article.title }}</div>
-            <div>基本信息{{ article.post_time|date:'Y年m月d日 H:i' }},{{ article.category }}</div>
-            <div>
-                正文{{ article.content|custom_markdown|truncatechars_html:30 }}
-            {% comment %}如果content超出30，就限制字数，并显示"更多"按钮{% endcomment %}
-                {% if article.content|length > 30 %}
-                <a href="{%url "article_detail" article_id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m"%}">更多</a>
-                {% endif %}
-            </div>
-            <br>
-        </div>
+
+		<div class="col-md-12 column">
+            <div class="page-header">
+
+                    <a href="{% url "article_detail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m"%}">
+                        <h2>
+                        {{ article.title }}
+                        </h2>
+                    </a>
+
+                <h5>
+                    <small>{{ article.post_time|date:'Y年m月d日' }}</small>
+                    <a class="btn" href="#">{{ article.category }}</a>
+			    </h5>
+			</div>
+
+            <p>{{ article.content|custom_markdown|truncatechars_html:100 }}</p>
+            {% if article.content|length > 100 %}
+                <p>
+                    <a class="btn" href="{% url "article_detail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m"%}">Detail »</a>
+                </p>
+            {% endif %}
+            <hr>
+		</div>
     {% endfor %}
 
 {% endblock %}

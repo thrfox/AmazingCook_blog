@@ -19,11 +19,13 @@ from django.contrib import admin
 from blog import views
 
 urlpatterns = [
+
     url(r'^markdown/', include('django_markdown.urls')),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.home, name="home"),
-    url(r'^article/(?P<year>\d{4})/(?P<month>\d{2})/(?P<article_id>\d+)/$',
-        views.article_detail, name="article_detail"),
+    url(r'^$', views.home, name='home'),
+    url(r'^articles/(?P<year>\d{4})/(?P<month>\d{2})/p/(?P<id>\d+)/$', views.article_detail, name='article_detail'),
+    url(r'^archive/(?P<fil>\w+)/$', views.archive, name='archive'),
+    url(r'^category/$', views.category_by_name, name='category'),
 
 
 ]

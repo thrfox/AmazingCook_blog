@@ -4,7 +4,17 @@
 1.博文的详细内容
 {% endcomment %}
 {% block content %}
-    <p>
-        {{ article.content|custom_markdown }}
-    </p>
+    <div class="col-md-12 column">
+        <div class="page-header">
+            <h2>
+                {{ article.title }}
+            </h2>
+            <h5>
+                <small>{{ article.post_time|date:'Y年m月d日' }}</small>
+                <a class="btn" href="#">{{ article.category }}</a>
+            </h5>
+        </div>
+
+        <p>{{ article.content|custom_markdown}}</p>
+    </div>
 {% endblock %}

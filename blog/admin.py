@@ -13,11 +13,11 @@ class UsersAdmin(admin.ModelAdmin):
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
     # 展示浏览框
-    list_display = ('title', 'category', 'post_time', 'content',)  # 列表显示
+    list_display = ('title', 'category', 'post_time', 'content_format',)  # 列表显示
     search_fields = ('title', 'category',)  # 可以用来搜索的字段
     list_filter = ('category',)  # 列表过滤
     date_hierarchy = 'post_time'  # 日期层
     ordering = ('-modify_time',)  # 按修改时间降序排列
 
     # 编辑框
-    fields = ('title', 'category', 'content',)  # 显示被编辑的字段
+    fields = ('title', 'category', 'content', 'post_time')  # 显示被编辑的字段

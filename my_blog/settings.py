@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     # 'ckeditor',  # 文本编辑器
-    'django_markdown',  # markdown编辑器1步
+    'django_markdown',  # markdown编辑器
 ]
 
 MIDDLEWARE_CLASSES = [

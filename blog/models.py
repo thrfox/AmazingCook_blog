@@ -4,6 +4,7 @@ from django.db import models
 # 创建数据库表
 
 # 用户表
+from django.utils import timezone
 from django_markdown.models import MarkdownField
 
 
@@ -42,9 +43,14 @@ class Article(models.Model):
     title = models.CharField(max_length=100, verbose_name='标题')  # 标题
     # author = models.ForeignKey(Users, verbose_name='作者')  # 作者, 默认值为用户名
     category = models.CharField(max_length=30, choices=CATEGORY, verbose_name='类别')  # 文章类别，选项选择
-    post_time = models.DateTimeField(auto_now_add=True, verbose_name='发表时间')  # 文章发表日期
+    post_time = models.DateTimeField(default=timezone.now(), verbose_name='发表时间')  # 文章发表日期
     modify_time = models.DateTimeField(auto_now=True, verbose_name='最近更新')  # 文章修改日期
     content = MarkdownField(blank=True, null=True, verbose_name='正文')  # 文章正文，可为空，富表单
+
+    # 避免后台正文显示过长
+    def content_format(self):
+        # 如果len()>100 返回[0:100]，否则self.content
+        return self.content[0:100] if len(self.content) > 100 else self.content
 
     def __str__(self):
         return self.title

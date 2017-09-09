@@ -5,16 +5,50 @@ from django.shortcuts import render
 from blog.models import Article
 
 
+# 首页
 def home(request):
-    articles = Article.objects.all()
+    try:
+        articles = Article.objects.all()
+    except Article.DoesNotExist:
+        raise Http404
     return render(request, 'home.html', locals())
 
 
-def article_detail(request, year, month, article_id):
+# 文章详情
+def article_detail(request, year, month, id):
     try:
-        article = Article.objects.get(id=article_id)
+        article = Article.objects.get(id=id)
     except Article.DoesNotExist:
         raise Http404
     # article = Article.objects.filter(id=article_id)[0] 约等同于上条
     # get()返回单条数据，filter返回QuerySet多条数据
-    return render(request, "detail.html", locals())
+    return render(request, 'detail.html', locals())
+
+
+# 归档视图
+def archive(request, fil):
+    try:
+        if fil == 'All':
+            # 相当于select id,post_time,title from Article
+            posts = Article.objects.only('id', 'post_time', 'title').order_by('-post_time')
+        else:  # 根据传入的filter查询不同类别 select id,post_time,title from Article where category = fil
+            posts = Article.objects.filter(category=fil)
+        years = set()
+        # 查询每篇文章的year添加到不可重复set()中
+        for post in posts:
+            years.add(post.post_time.year)  # 只添加年，以此类推，month,day
+        # years转换成list并降序排序
+        years = list(years)
+        years.sort(reverse=True)
+    except Article.DoesNotExist:
+        raise Http404
+    return render(request, 'archive.html', locals())
+
+
+# 分类详情
+def category_by_name(request):
+    try:
+        category = Article.objects.only("category").distinct()  # 装入的是Article对象
+    except Article.DoesNotExist:
+        raise Http404
+    return render(request, "category_by_name.html", locals())
