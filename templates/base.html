@@ -3,13 +3,10 @@
 <head>
     <meta charset="utf-8">
     <title>base</title>
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
-    <!--[if gt IE 8]-->
-        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
-    <!--<![endif]-->
 </head>
 <body>
-<p>今天是：{% now "Y年m月d日" %}</p>
+
+<div class="container">
     <div id="layout">
         <div id="top">
             <!-- 填写HTML
@@ -17,11 +14,11 @@
              -->
         </div>
 
-        <div id="title">
-            <!-- 填写HTML -->
+        <div id="nav_bar" class="row clearfix">
+            {% include "nav_bar.html" %}
         </div>
 
-        <div id="contents">
+        <div id="content" class="row clearfix">
         <!-- 正文-->
             {% block content %}
             {% endblock %}
@@ -31,5 +28,15 @@
             <!-- 填写HTML include -->
         </div>
     </div>
+</div>
+
+
+
+<!-- 新 Bootstrap 核心 CSS 文件 -->
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
