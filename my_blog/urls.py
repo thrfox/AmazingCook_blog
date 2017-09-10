@@ -23,9 +23,12 @@ urlpatterns = [
     url(r'^markdown/', include('django_markdown.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.home, name='home'),
-    url(r'^articles/(?P<year>\d{4})/(?P<month>\d{2})/p/(?P<id>\d+)/$', views.article_detail, name='article_detail'),
-    url(r'^archive/(?P<fil>\w+)/$', views.archive, name='archive'),
-    url(r'^category/$', views.category_by_name, name='category'),
+    url(r'^articles/(?P<year>\d{4})/(?P<month>\d{2})/p/(?P<id>\d+)/$',
+        views.article_detail, name='articleDetail'),    # 文章详情
+    url(r'^archive/(?P<fil>\w+)/$', views.archive, name='archive'),  # 文章分类结果
+    url(r'^category/$', views.category_by_name, name='category'),   # 文章全部分类
+    url(r'^search/$', views.search_by_title_or_content, name='search'),
+    url(r'^about_me$', views.about_me, name='aboutMe')
 
 
 ]

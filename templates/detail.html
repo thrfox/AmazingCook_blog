@@ -11,7 +11,7 @@
             </h2>
             <h5>
                 <small>{{ article.post_time|date:'Y年m月d日' }}</small>
-                <a class="btn" href="#">{{ article.category }}</a>
+                <a class="btn" href="{% url "archive" fil=article.category%}">{{ article.category }}</a>
             </h5>
         </div>
 

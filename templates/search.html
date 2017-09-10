@@ -2,9 +2,15 @@
 {% load custom_markdown %}
 
 {% block content %}
-    {% for article in articles %}
 
-		<div class="col-md-12 column">
+    {% if error %}
+        <p>暂无相关文章</p>
+        {% else %}
+        <div>
+            <p>共搜索到<strong>{{ count }}</strong>条结果</p>
+        </div>
+        {% for article in result %}
+        <div class="col-md-12 column">
             <div class="page-header">
 
                     <a href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m"%}">
@@ -27,6 +33,8 @@
             {% endif %}
             <hr>
 		</div>
-    {% endfor %}
+        {% endfor %}
+    {% endif %}
+
 
 {% endblock %}

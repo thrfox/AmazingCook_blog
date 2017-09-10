@@ -20,4 +20,4 @@ class ArticleAdmin(admin.ModelAdmin):
     ordering = ('-modify_time',)  # 按修改时间降序排列
 
     # 编辑框
-    fields = ('title', 'category', 'content', 'post_time')  # 显示被编辑的字段
+    fields = ('title', 'category', 'content')  # 显示被编辑的字段

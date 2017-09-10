@@ -1,5 +1,6 @@
+import markdown
 from django.http import Http404
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 
 # Create your views here.
 from blog.models import Article
@@ -16,6 +17,7 @@ def home(request):
 
 # 文章详情
 def article_detail(request, year, month, id):
+
     try:
         article = Article.objects.get(id=id)
     except Article.DoesNotExist:
@@ -48,7 +50,30 @@ def archive(request, fil):
 # 分类详情
 def category_by_name(request):
     try:
-        category = Article.objects.only("category").distinct()  # 装入的是Article对象
+        category = Article.objects.only('category').distinct()  # 装入的是Article对象
     except Article.DoesNotExist:
         raise Http404
-    return render(request, "category_by_name.html", locals())
+    return render(request, 'category_by_name.html', locals())
+
+
+def search_by_title_or_content(request):
+    # sw = request.GET['sw']  # 注意，此处是[]
+    sw = request.GET.get('sw')  # 注意，此处是()
+    if not sw:
+        error = True
+    else:
+        data = Article.objects.only('id', 'post_time', 'title', 'content')
+        result = set()
+        # 循环对象匹配结果
+        for x in data:
+            if sw in x.title:
+                result.add(x)
+            elif sw in x.content:
+                result.add(x)
+        count = len(result)
+        error = True if count == 0 else False
+    return render(request, 'search.html', locals())
+
+
+def about_me(request):
+    return render(request, 'about_me.html', locals())
