@@ -17,7 +17,6 @@ def home(request):
 
 # 文章详情
 def article_detail(request, year, month, id):
-
     try:
         article = Article.objects.get(id=id)
     except Article.DoesNotExist:
@@ -34,7 +33,7 @@ def archive(request, fil):
             # 相当于select id,post_time,title from Article
             posts = Article.objects.only('id', 'post_time', 'title').order_by('-post_time')
         else:  # 根据传入的filter查询不同类别 select id,post_time,title from Article where category = fil
-            posts = Article.objects.filter(category=fil)
+            posts = Article.objects.filter(category__category=fil)  # 多表联查，category是外键，查到该外键表里的category
         years = set()
         # 查询每篇文章的year添加到不可重复set()中
         for post in posts:

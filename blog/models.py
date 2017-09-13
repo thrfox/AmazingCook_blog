@@ -31,19 +31,24 @@ class Users(models.Model):
         verbose_name_plural = '用户'
 
 
+# 类别表
+class ArticleCategory(models.Model):
+    category = models.CharField(max_length=30, verbose_name='类别')
+
+    # 返回显示的字段
+    def __str__(self):
+        return self.category
+
+    class Meta:
+        verbose_name_plural = '文章类别'
+
+
 # 文章表
 class Article(models.Model):
-    CATEGORY = (
-        ('Python', 'Python'),
-        ('Java', 'Java'),
-        ('C', 'C'),
-        ('Other', 'Other'),
-    )
-
     title = models.CharField(max_length=100, verbose_name='标题')  # 标题
     # author = models.ForeignKey(Users, verbose_name='作者')  # 作者, 默认值为用户名
-    category = models.CharField(max_length=30, choices=CATEGORY, verbose_name='类别')  # 文章类别，选项选择
-    post_time = models.DateTimeField(default=timezone.now(), verbose_name='发表时间')  # 文章发表日期
+    category = models.ForeignKey(ArticleCategory, verbose_name='文章类别')  # 文章类别，选项选择
+    post_time = models.DateTimeField(auto_now_add=True, verbose_name='发表时间')  # 文章发表日期
     modify_time = models.DateTimeField(auto_now=True, verbose_name='最近更新')  # 文章修改日期
     content = MarkdownField(blank=True, null=True, verbose_name='正文')  # 文章正文，可为空，富表单
 

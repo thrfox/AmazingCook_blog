@@ -81,7 +81,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': os.path.join(BASE_DIR, 'mysql'),
-        'NAME': 'my_blog',
+        'NAME': 'AmazingCode',
         'USER': 'root',
         'PASSWORD': 'admin',
         'POST': '3306',
