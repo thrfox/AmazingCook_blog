@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from blog.models import Article, Users
+from blog.models import Article, Users, ArticleCategory
 
 
 @admin.register(Users)  # 注册装饰器
@@ -21,3 +21,10 @@ class ArticleAdmin(admin.ModelAdmin):
 
     # 编辑框
     fields = ('title', 'category', 'content')  # 显示被编辑的字段
+
+
+@admin.register(ArticleCategory)
+class ArticleCategoryAdmin(admin.ModelAdmin):
+    list_display = ('category',)
+
+    fields = ('category', )
