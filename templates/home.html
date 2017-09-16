@@ -29,4 +29,20 @@
 		</div>
     {% endfor %}
 
+    <div>
+        {% if articles.has_previous %} {# 如果有上一页，则显示上一页按钮 #}
+            {# ifequal为第2页，点击上一页则回首页，不带page #}
+            {% ifequal articles.number 2 %}
+                    <a class="btn" href="{% url "home" %}">上一页</a>
+                {% else %}
+                    <a class="btn" href="{% url "page" num=articles.previous_page_number %}">上一页</a>
+            {% endifequal %}
+
+        {% endif %}
+
+        {% if articles.has_next %}
+            <a class="btn" href="{% url "page" num=articles.next_page_number %}">下一页</a>
+        {% endif %}
+    </div>
+
 {% endblock %}

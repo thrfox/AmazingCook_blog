@@ -1,17 +1,22 @@
-import markdown
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import Http404
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render
 
 # Create your views here.
 from blog.models import Article
 
 
 # 首页
-def home(request):
+# 分页页码默认设为1
+def home(request, num=1):
+    articles_data = Article.objects.all()
+    paginator = Paginator(articles_data, 10)  # 分页，每页10个
     try:
-        articles = Article.objects.all()
-    except Article.DoesNotExist:
+        articles = paginator.page(num)
+    except PageNotAnInteger:  # 如果接到值不为数字，如/page/xdf/
         raise Http404
+    except EmptyPage:  # 如果接到的num页码数不存在，则显示最后一页
+        articles = paginator.page(paginator.num_pages)
     return render(request, 'home.html', locals())
 
 
