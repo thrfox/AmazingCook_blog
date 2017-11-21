@@ -79,12 +79,12 @@ WSGI_APPLICATION = 'my_blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': os.path.join(BASE_DIR, 'mysql'),
-        'NAME': 'AmazingCode',
-        'USER': 'root',
-        'PASSWORD': 'admin',
-        'POST': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'sqlite3'),
+        # 'NAME': 'AmazingCode',
+        # 'USER': 'root',
+        # 'PASSWORD': 'admin',
+        # 'POST': '3306',
     }
 }
 
