@@ -1,10 +1,8 @@
-from ckeditor import fields
 from django.db import models
 
 # 创建数据库表
 
 # 用户表
-from django.utils import timezone
 from django_markdown.models import MarkdownField
 
 
