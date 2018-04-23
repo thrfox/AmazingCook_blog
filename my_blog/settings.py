@@ -132,3 +132,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # 拷贝static文件的路径，为当前目录的static
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+MEDIA_ROOT = (
+    os.path.join(BASE_DIR, "media")
+)
+MEDIA_URL = 'media/'
