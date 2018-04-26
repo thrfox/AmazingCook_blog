@@ -4,6 +4,7 @@ from django.db import models
 
 # 用户表
 from django_markdown.models import MarkdownField
+from markdownx.models import MarkdownxField
 
 
 class Users(models.Model):
@@ -57,9 +58,9 @@ class ArticleTag(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length=100, verbose_name='标题')  # 标题
     # author = models.ForeignKey(Users, verbose_name='作者')  # 作者, 默认值为用户名
-    category = models.ForeignKey(ArticleCategory, verbose_name='文章类别', null=True)  # 文章类别，选项选择
+    category = models.ForeignKey(ArticleCategory, verbose_name='文章类别')  # 文章类别，选项选择
     tag = models.ManyToManyField(ArticleTag, max_length=50, verbose_name='标签')
-    content = MarkdownField(blank=True, null=True, verbose_name='正文')  # 文章正文，可为空，富表单
+    content = MarkdownxField(blank=True, null=True, verbose_name='正文')  # 文章正文，可为空，富表单
     post_time = models.DateTimeField(auto_now_add=True, verbose_name='发表时间')  # 文章发表日期
     modify_time = models.DateTimeField(auto_now=True, verbose_name='最近更新')  # 文章修改日期
 

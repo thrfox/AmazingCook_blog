@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     # 'ckeditor',  # 文本编辑器
-    'django_markdown',  # markdown编辑器
+    'markdownx',  # markdown编辑器
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -133,10 +134,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # 拷贝static文件的路径，为当前目录的static
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
-MEDIA_ROOT = (
-    os.path.join(BASE_DIR, "media")
-)
-MEDIA_URL = 'media/'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")

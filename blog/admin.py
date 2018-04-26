@@ -1,8 +1,9 @@
 from django.contrib import admin
 
 # Register your models here.
-from blog.models import Article, Users, ArticleCategory
+from markdownx.admin import MarkdownxModelAdmin
 
+from blog.models import Article, Users, ArticleCategory
 
 @admin.register(Users)  # 注册装饰器
 class UsersAdmin(admin.ModelAdmin):
@@ -11,7 +12,7 @@ class UsersAdmin(admin.ModelAdmin):
 
 
 @admin.register(Article)
-class ArticleAdmin(admin.ModelAdmin):
+class ArticleAdmin(MarkdownxModelAdmin):
     # 展示浏览框
     list_display = ('title', 'category', 'post_time', 'content_format',)  # 列表显示
     search_fields = ('title', 'category',)  # 可以用来搜索的字段
