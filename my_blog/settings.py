@@ -25,7 +25,7 @@ SECRET_KEY = '$&*mb5-dl%ldh9nllj!hud8*eqo92@)ay@5a44&73^=+p2-0^b'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'www.amazingcode.site']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
