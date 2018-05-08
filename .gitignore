@@ -1,7 +1,7 @@
-.idea/*
+.idea/
 *.pyc
-media/*
-blog/migrations/*.*
-static/*
-sqlite3
-blog/migrations/*
+media/
+blog/migrations/
+static/
+/sqlite3
+blog/migrations/
