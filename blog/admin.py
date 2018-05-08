@@ -1,9 +1,9 @@
 from django.contrib import admin
-
 # Register your models here.
 from markdownx.admin import MarkdownxModelAdmin
 
 from blog.models import Article, Users, ArticleCategory
+
 
 @admin.register(Users)  # 注册装饰器
 class UsersAdmin(admin.ModelAdmin):
@@ -28,4 +28,4 @@ class ArticleAdmin(MarkdownxModelAdmin):
 class ArticleCategoryAdmin(admin.ModelAdmin):
     list_display = ('category',)
 
-    fields = ('category', )
+    fields = ('category',)
