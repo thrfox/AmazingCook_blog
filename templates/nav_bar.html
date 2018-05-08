@@ -31,16 +31,21 @@
                     </ul>
                 </li>
             </ul>
-            <form action="{% url "search" %}" class="navbar-form navbar-left" role="search" method="get">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="sw" placeholder="Search:内容/标题"/>
-                </div>
-            </form>
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="{% url "collection" %}">Collection</a>
+            </li>
+          </ul>
             <ul class="nav navbar-nav">
                 <li>
                     <a href="{% url "aboutMe" %}">About Me</a>
                 </li>
             </ul>
+          <form action="{% url "search" %}" class="navbar-form navbar-left" role="search" method="get">
+            <div class="form-group">
+              <input type="text" class="form-control" name="sw" placeholder="Search:内容/标题"/>
+            </div>
+          </form>
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <p class="navbar-text">今天是： {% now "Y年m月d日" %}</p>

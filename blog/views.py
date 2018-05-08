@@ -3,7 +3,7 @@ from django.http import Http404
 from django.shortcuts import render
 
 # Create your views here.
-from blog.models import Article
+from blog.models import Article, ArticleCategory
 
 
 # 首页
@@ -65,6 +65,7 @@ def search_by_title_or_content(request):
     sw = request.GET.get('sw')  # 注意，此处是()
     if not sw:
         error = True
+        home(request, 1)
     else:
         data = Article.objects.only('id', 'post_time', 'title', 'content')
         result = set()
@@ -77,6 +78,15 @@ def search_by_title_or_content(request):
         count = len(result)
         error = True if count == 0 else False
     return render(request, 'search.html', locals())
+
+
+def collections(request):
+    try:
+        coll_tag = ArticleCategory.objects.get(category='collection')
+        collection = coll_tag.article_set.all()
+    except ArticleCategory.DoesNotExist:
+        raise Http404
+    return render(request, 'collection.html', locals())
 
 
 def about_me(request):
