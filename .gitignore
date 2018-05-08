@@ -3,5 +3,5 @@
 media/*
 blog/migrations/*.*
 static/*
-slite3
+sqlite3
 blog/migrations/*
