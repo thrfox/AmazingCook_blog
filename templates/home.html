@@ -4,38 +4,40 @@
 {% block content %}
     {% for article in articles %}
 
-		<div class="col-md-12 column">
+      <div class="col-md-12 column">
             <div class="page-header">
 
-                    <a href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m"%}">
-                        <h2>
+              <a href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m" %}">
+                <h2>
                         {{ article.title }}
-                        </h2>
-                    </a>
+                </h2>
+              </a>
 
                 <h5>
                     <small>{{ article.post_time|date:'Y年m月d日' }}</small>
-                    <a class="btn" href="{% url "archive" fil=article.category%}">{{ article.category }}</a>
-			    </h5>
-			</div>
+                  <a class="btn" href="{% url "archive" fil=article.category %}">{{ article.category }}</a>
+                </h5>
+            </div>
 
             <p>{{ article.content|custom_markdown|truncatechars_html:100 }}</p>
             {% if article.content|length > 100 %}
                 <p>
-                    <a class="btn" href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m"%}">Detail »</a>
+                  <a class="btn"
+                     href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m" %}">Detail
+                    »</a>
                 </p>
             {% endif %}
             <hr>
-		</div>
+      </div>
     {% endfor %}
 
     <div>
         {% if articles.has_previous %} {# 如果有上一页，则显示上一页按钮 #}
             {# ifequal为第2页，点击上一页则回首页，不带page #}
             {% ifequal articles.number 2 %}
-                    <a class="btn" href="{% url "home" %}">上一页</a>
-                {% else %}
-                    <a class="btn" href="{% url "page" num=articles.previous_page_number %}">上一页</a>
+              <a class="btn" href="{% url "home" %}">上一页</a>
+            {% else %}
+              <a class="btn" href="{% url "page" num=articles.previous_page_number %}">上一页</a>
             {% endifequal %}
 
         {% endif %}

@@ -3,3 +3,5 @@
 media/*
 blog/migrations/*.*
 static/*
+slite3
+blog/migrations/*

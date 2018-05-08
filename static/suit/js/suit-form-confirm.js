@@ -29,7 +29,7 @@ var confirmExitIfModified = (function () {
                     cls.indexOf('select2') == -1 &&
                     // Skip elements with ignore-changes class
                     cls.indexOf('ignore-changes') == -1
-                    ) {
+                ) {
                     return true;
                 }
             }

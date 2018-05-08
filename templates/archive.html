@@ -11,15 +11,15 @@
             {% comment %}循环文章列表{% endcomment %}
             {% for post in posts %}
                 {% comment %}如果年份与上次循环相等，则显示出来{% endcomment %}
-                {% ifequal post.post_time.year year%}
+                {% ifequal post.post_time.year year %}
                     <li>
-                    {{ post.post_time|date:"Y-m-d" }}
-                        <a href="{% url "articleDetail" id=post.id year=post.post_time|date:"Y" month=post.post_time|date:"m"%}">{{ post.title }}</a>
+                        {{ post.post_time|date:"Y-m-d" }}
+                        <a href="{% url "articleDetail" id=post.id year=post.post_time|date:"Y" month=post.post_time|date:"m" %}">{{ post.title }}</a>
                     </li>
                 {% endifequal %}
             {% endfor %}
         </ul>
-        {% empty %}
-            <p>暂无文章</p>
+    {% empty %}
+        <p>暂无文章</p>
     {% endfor %}
 {% endblock %}

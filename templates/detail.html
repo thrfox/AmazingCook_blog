@@ -11,10 +11,10 @@
             </h2>
             <h5>
                 <small>{{ article.post_time|date:'Y年m月d日' }}</small>
-                <a class="btn" href="{% url "archive" fil=article.category%}">{{ article.category }}</a>
+                <a class="btn" href="{% url "archive" fil=article.category %}">{{ article.category }}</a>
             </h5>
         </div>
 
-        <p>{{ article.content|custom_markdown}}</p>
+        <p>{{ article.content|custom_markdown }}</p>
     </div>
 {% endblock %}
