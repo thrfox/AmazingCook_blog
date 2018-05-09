@@ -83,7 +83,7 @@ def search_by_title_or_content(request):
 def collections(request):
     try:
         coll_tag = ArticleCategory.objects.get(category='collection')
-        collection = coll_tag.article_set.all()
+        collection = coll_tag.article_set.all().order_by('post_time')
     except ArticleCategory.DoesNotExist:
         raise Http404
     return render(request, 'collection.html', locals())
