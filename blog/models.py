@@ -62,7 +62,7 @@ class Article(models.Model):
     tag = models.ManyToManyField(ArticleTag, max_length=50, verbose_name='标签')
     content = MarkdownxField(blank=True, null=True, verbose_name='正文')  # 文章正文，可为空，富表单
     post_time = models.DateTimeField(default=timezone.now, verbose_name='发表时间')  # 文章发表日期
-    modify_time = models.DateTimeField(default=timezone.now, verbose_name='最近修改时间')  # 最近修改时间
+    modify_time = models.DateTimeField(auto_now=True, verbose_name='最近修改时间')  # 最近修改时间
 
     # 避免后台正文显示过长
     def content_format(self):
