@@ -21,7 +21,8 @@ class ArticleAdmin(MarkdownxModelAdmin):
     ordering = ('-modify_time',)  # 按修改时间降序排列
 
     # 编辑框
-    fields = ('title', 'category', 'content', 'post_time', 'modify_time')  # 显示被编辑的字段
+    fields = ('title', 'category', 'content', 'post_time', 'modify_time',)  # 显示被编辑的字段
+    readonly_fields = ('modify_time',)
 
 
 @admin.register(ArticleCategory)
