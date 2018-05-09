@@ -54,7 +54,7 @@ def archive(request, fil):
 # 分类详情
 def category_by_name(request):
     try:
-        category = Article.objects.only('category').distinct()  # 装入的是Article对象
+        category = ArticleCategory.objects.values('category').distinct().order_by('category')  # 装入的是Article对象
     except Article.DoesNotExist:
         raise Http404
     return render(request, 'category_by_name.html', locals())
