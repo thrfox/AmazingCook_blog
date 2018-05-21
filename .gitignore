@@ -2,6 +2,5 @@
 *.pyc
 media/
 blog/migrations/
-static/
 /sqlite3
 blog/migrations/

@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Count
 from django.http import Http404
 from django.shortcuts import render
 
@@ -9,7 +10,8 @@ from blog.models import Article, ArticleCategory
 # 首页
 # 分页页码默认设为1
 def home(request, num=1):
-    articles_data = Article.objects.all()
+    articles_data = Article.objects.all()  # 文章
+    sidebar_category = ArticleCategory.objects.values('category').distinct().annotate(num_articles=Count('article'))
     paginator = Paginator(articles_data, 10)  # 分页，每页10个
     try:
         articles = paginator.page(num)
@@ -91,3 +93,7 @@ def collections(request):
 
 def about_me(request):
     return render(request, 'about_me.html', locals())
+
+
+def ex(request):
+    return render(request, 'examples.html', locals())

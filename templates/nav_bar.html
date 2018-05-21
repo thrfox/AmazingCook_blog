@@ -1,58 +1,75 @@
 <div class="row clearfix">
     <nav class="navbar navbar-default navbar-static-top" role="navigation">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="{% url "home" %}">Home</a>
-        </div>
+        <div class="col-xs-12">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url "home" %}">Home</a>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-obj"
+                        aria-expanded="false">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Archive<strong
-                            class="caret"></strong></a>
-                    <ul class="dropdown-menu">
-                        {% comment %}后期可以通过loadTag将类型传入base.html实现此处动态渲染{% endcomment %}
-                        <li>
-                            <a href="{% url "archive" fil="All" %}">All</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="{% url "archive" fil="Java" %}">Java</a>
-                        </li>
-                        <li>
-                            <a href="{% url "archive" fil="Python" %}">Python</a>
-                        </li>
-                        <li>
-                            <a href="{% url "archive" fil="Other" %}">Other</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="{% url "category" %}">More</a>
+            <div class="collapse navbar-collapse" id="navbar-obj">
+                <div class="navbar-collapse col-xs-4">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Archive<span class="caret"/></a>
+                            <ul class="dropdown-menu">
+                                {% comment %}后期可以通过loadTag将类型传入base.html实现此处动态渲染{% endcomment %}
+                                <li>
+                                    <a href="{% url "archive" fil="All" %}">All</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="{% url "archive" fil="Java" %}">Java</a>
+                                </li>
+                                <li>
+                                    <a href="{% url "archive" fil="Python" %}">Python</a>
+                                </li>
+                                <li>
+                                    <a href="{% url "archive" fil="Other" %}">Other</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="{% url "category" %}">More</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="{% url "collection" %}">Collection</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="{% url "aboutMe" %}">About Me</a>
-                </li>
-            </ul>
-            <form action="{% url "search" %}" class="navbar-form navbar-left" role="search" method="get">
-                <div class="form-group">
-                    <input type="text" class="form-control" name="sw" placeholder="Search:内容/标题"/>
                 </div>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <p class="navbar-text">今天是： {% now "Y年m月d日" %}</p>
-                </li>
-            </ul>
-
+                <div class="navbar-collapse col-xs-4">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{% url "collection" %}">Collection</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-collapse col-xs-4">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="{% url "aboutMe" %}">About Me</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-collapse col-xs-8">
+                    <form action="{% url "search" %}" class="navbar-form navbar-left" role="search" method="get">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="sw" placeholder="查找:标题/正文"/>
+                        </div>
+                    </form>
+                </div>
+                <div class="navbar-collapse col-xs-4 navbar-right">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <p class="navbar-text"> {% now "Y年m月d日" %}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
+
+
     </nav>
 </div>

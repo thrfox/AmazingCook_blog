@@ -1,0 +1,33 @@
+.post-content {
+    border-bottom: 1px #c0c0c0 solid;
+    border-radius: 4px 4px 0 0;
+    padding-bottom: 5px;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        float: left;
+        margin: 0 1em;
+    }
+
+    .media-bottom {
+        float: none;
+        margin: 0 3em;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .sidebar {
+        float: right;
+        width: 200px;
+        padding: 5px 20px;
+        margin: 0 0 17px 0;
+    }
+}
+
+.sidebar img {
+    width: 2em;
+    height: 2em;
+    overflow: hidden;
+    margin: 0 0.2em;
+}

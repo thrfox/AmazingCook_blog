@@ -22,7 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$&*mb5-dl%ldh9nllj!hud8*eqo92@)ay@5a44&73^=+p2-0^b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+
+# 调用exchange
+EMAIL_USE_TLS = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -66,6 +69,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                'django.template.context_processors.static',
             ],
         },
     },
@@ -126,7 +130,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # 拷贝static文件的路径，为当前目录的static
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # 拷贝static文件的路径，为当前目录的static
+STATIC_ROOT = ''  # 拷贝static文件的路径，为当前目录的static
+STATICFILES_DIRS = (os.path.join('static'),)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")

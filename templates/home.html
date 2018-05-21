@@ -1,50 +1,70 @@
 {% extends "base.html" %}
 {% load custom_markdown %}
+{% load staticfiles %}
 
 {% block content %}
-    {% for article in articles %}
+    <div class="col-md-8 col-xs-12">
+        {% for article in articles %}
+            <div class="post-content">
+                <div class="page-header">
 
-      <div class="col-md-12 column">
-            <div class="page-header">
+                    <a href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m" %}">
+                        <h2>
+                            {{ article.title }}
+                        </h2>
+                    </a>
 
-              <a href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m" %}">
-                <h2>
-                        {{ article.title }}
-                </h2>
-              </a>
+                    <h5>
+                        <small>{{ article.post_time|date:'Y年m月d日' }}</small>
+                        <a class="btn" href="{% url "archive" fil=article.category %}">{{ article.category }}</a>
+                    </h5>
+                </div>
 
-                <h5>
-                    <small>{{ article.post_time|date:'Y年m月d日' }}</small>
-                  <a class="btn" href="{% url "archive" fil=article.category %}">{{ article.category }}</a>
-                </h5>
+                <p>{{ article.content|custom_markdown|truncatechars_html:100 }}</p>
+                {% if article.content|length > 100 %}
+                    <p>
+                        <a class="btn"
+                           href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m" %}">Detail
+                            »</a>
+                    </p>
+                {% endif %}
             </div>
+        {% endfor %}
 
-            <p>{{ article.content|custom_markdown|truncatechars_html:100 }}</p>
-            {% if article.content|length > 100 %}
-                <p>
-                  <a class="btn"
-                     href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m" %}">Detail
-                    »</a>
-                </p>
+        <div>
+            {% if articles.has_previous %} {# 如果有上一页，则显示上一页按钮 #}
+                {# ifequal为第2页，点击上一页则回首页，不带page #}
+                {% ifequal articles.number 2 %}
+                    <a class="btn" href="{% url "home" %}">上一页</a>
+                {% else %}
+                    <a class="btn" href="{% url "page" num=articles.previous_page_number %}">上一页</a>
+                {% endifequal %}
+
             {% endif %}
-            <hr>
-      </div>
-    {% endfor %}
 
-    <div>
-        {% if articles.has_previous %} {# 如果有上一页，则显示上一页按钮 #}
-            {# ifequal为第2页，点击上一页则回首页，不带page #}
-            {% ifequal articles.number 2 %}
-              <a class="btn" href="{% url "home" %}">上一页</a>
-            {% else %}
-              <a class="btn" href="{% url "page" num=articles.previous_page_number %}">上一页</a>
-            {% endifequal %}
-
-        {% endif %}
-
-        {% if articles.has_next %}
-            <a class="btn" href="{% url "page" num=articles.next_page_number %}">下一页</a>
-        {% endif %}
+            {% if articles.has_next %}
+                <a class="btn" href="{% url "page" num=articles.next_page_number %}">下一页</a>
+            {% endif %}
+        </div>
     </div>
-
+    <div class="col-md-4">
+        <div class="media-bottom">
+            <div class="sidebar">
+                <h3>文章分类</h3>
+                <ul>
+                    {% for c in sidebar_category %}
+                        <li><a href="{% url "archive" fil=c.category %}">{{ c.category }} ({{ c.num_articles }})</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="sidebar">
+                <h3>联系我</h3>
+                <a href="https://github.com/thrfox"><img src="{% static 'images/github.png' %}"></a>
+                <a href="https://www.zhihu.com/people/thrza/activities"><img src="{% static 'images/zhihu.png' %}"></a>
+                <a href="tencent://Message/?Uin=361982365&websiteName=qzone.qq.com&Menu=yes "><img
+                        src="{% static 'images/qq.png' %}"></a>
+            </div>
+        </div>
+    </div>
 {% endblock %}
