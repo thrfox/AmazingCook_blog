@@ -25,6 +25,12 @@
     }
 }
 
+img {
+    width: 100%;
+    height: 100%;
+}
+
+
 .sidebar img {
     width: 2em;
     height: 2em;
