@@ -14,9 +14,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url, include
+from django.conf.urls.static import static
 from django.contrib import admin
 
 from blog import views
+from my_blog import settings
 
 urlpatterns = [
     url(r'^markdownx/', include('markdownx.urls')),
@@ -30,5 +32,5 @@ urlpatterns = [
                   url(r'^collection/$', views.collections, name='collection'),  # 收集工作集合
     url(r'^search/$', views.search_by_title_or_content, name='search'),  # 搜索结果栏
     url(r'^about_me$', views.about_me, name='aboutMe'),  # 关于我
-]  # + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
-# + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+              ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) \
+              + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
