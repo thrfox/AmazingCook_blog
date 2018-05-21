@@ -6,7 +6,6 @@
 
 @media screen and (max-width: 768px) {
     .sidebar {
-        float: left;
         margin: 0 1.5em;
     }
 
@@ -17,6 +16,11 @@
 }
 
 @media screen and (min-width: 769px) {
+    .media-bottom {
+        height: 0;
+        padding-bottom: 100%
+    }
+
     .sidebar {
         float: right;
         width: 200px;
@@ -26,6 +30,7 @@
 }
 
 img {
+    display: inline-block;
     height: auto;
     max-width: 100%;
 }
