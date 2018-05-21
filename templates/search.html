@@ -2,41 +2,41 @@
 {% load custom_markdown %}
 
 {% block content %}
-
-    {% if error %}
-        <p>暂无相关文章</p>
-    {% else %}
-        <div>
-            <p>共搜索到<strong>{{ count }}</strong>条结果</p>
-        </div>
-        {% for article in result %}
-            <div class="col-md-12 column">
-                <div class="page-header">
-
-                    <a href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m" %}">
-                        <h2>
-                            {{ article.title }}
-                        </h2>
-                    </a>
-
-                    <h5>
-                        <small>{{ article.post_time|date:'Y年m月d日' }}</small>
-                        <a class="btn" href="{% url "archive" fil=article.category %}">{{ article.category }}</a>
-                    </h5>
-                </div>
-
-                <p>{{ article.content|custom_markdown|truncatechars_html:100 }}</p>
-                {% if article.content|length > 100 %}
-                    <p>
-                        <a class="btn"
-                           href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m" %}">Detail
-                            »</a>
-                    </p>
-                {% endif %}
-                <hr>
+    <div class="container">
+        {% if error %}
+            <p>暂无相关文章</p>
+        {% else %}
+            <div>
+                <p>共搜索到<strong>{{ count }}</strong>条结果</p>
             </div>
-        {% endfor %}
-    {% endif %}
+            {% for article in result %}
+                <div class="col-md-12 column">
+                    <div class="page-header">
 
+                        <a href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m" %}">
+                            <h2>
+                                {{ article.title }}
+                            </h2>
+                        </a>
+
+                        <h5>
+                            <small>{{ article.post_time|date:'Y年m月d日' }}</small>
+                            <a class="btn" href="{% url "archive" fil=article.category %}">{{ article.category }}</a>
+                        </h5>
+                    </div>
+
+                    <p>{{ article.content|custom_markdown|truncatechars_html:100 }}</p>
+                    {% if article.content|length > 100 %}
+                        <p>
+                            <a class="btn"
+                               href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m" %}">Detail
+                                »</a>
+                        </p>
+                    {% endif %}
+                    <hr>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 
 {% endblock %}
