@@ -22,10 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$&*mb5-dl%ldh9nllj!hud8*eqo92@)ay@5a44&73^=+p2-0^b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-# 调用exchange
-EMAIL_USE_TLS = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
