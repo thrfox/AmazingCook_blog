@@ -6,10 +6,18 @@
 
 @media screen and (max-width: 768px) {
     .sidebar {
-        margin: 0 1.5em;
+        float: none;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #home-category {
+        display: none;
     }
 
     .media-bottom {
+        display: none;
         float: none;
         margin: 0 1em;
     }
