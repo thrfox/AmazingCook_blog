@@ -47,24 +47,22 @@
             {% endif %}
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="media-bottom">
-            <div class="sidebar">
-                <h3>文章分类</h3>
-                <ul>
-                    {% for c in sidebar_category %}
-                        <li><a href="{% url "archive" fil=c.category %}">{{ c.category }} ({{ c.num_articles }})</a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div class="sidebar">
-                <h3>联系我</h3>
-                <a href="https://github.com/thrfox"><img src="{% static 'images/github.png' %}"></a>
-                <a href="https://www.zhihu.com/people/thrza/activities"><img src="{% static 'images/zhihu.png' %}"></a>
-                <a href="tencent://Message/?Uin=361982365&websiteName=qzone.qq.com&Menu=yes "><img
-                        src="{% static 'images/qq.png' %}"></a>
-            </div>
+    <div class="col-md-4 col-xs-12">
+        <div id="home-category" class="sidebar text-center">
+            <h3>文章分类</h3>
+            <ul class="list-unstyled">
+                {% for c in sidebar_category %}
+                    <li><a href="{% url "archive" fil=c.category %}">{{ c.category }} ({{ c.num_articles }})</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="home-contactme" class="sidebar text-center">
+            <h3>联系我</h3>
+            <a href="https://github.com/thrfox"><img src="{% static 'images/github.png' %}"></a>
+            <a href="https://www.zhihu.com/people/thrza/activities"><img src="{% static 'images/zhihu.png' %}"></a>
+            <a href="tencent://Message/?Uin=361982365&websiteName=qzone.qq.com&Menu=yes "><img
+                    src="{% static 'images/qq.png' %}"></a>
         </div>
     </div>
 {% endblock %}
