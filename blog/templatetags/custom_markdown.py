@@ -29,7 +29,8 @@ def clear_css_img(value):
     try:
         imgurl = r'<a href="' + re.search(imgurlcp, value).group(0) + r'">[图片]</a>'
     except AttributeError:
-        imgurl = r'<a href="https://www.baidu.com">https://www.baidu.com</a>'
+        # imgurl = r'<a href="https://www.baidu.com">https://www.baidu.com</a>'
+        imgurl = r''
     imgtag = re.compile(r'<img.*/>')
     value = re.sub(imgtag, imgurl, value)
     value = re.sub(r'<h\d>', '<p>', value)
