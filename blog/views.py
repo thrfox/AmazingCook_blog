@@ -10,7 +10,7 @@ from blog.models import Article, ArticleCategory
 # 首页
 # 分页页码默认设为1
 def home(request, num=1):
-    articles_data = Article.objects.all().exclude(category='collection').order_by('-post_time')  # 文章
+    articles_data = Article.objects.all().order_by('-post_time').exclude(category__category__iexact='collection')  # 文章
     sidebar_category = ArticleCategory.objects.values('category').distinct().annotate(
         num_articles=Count('article'))  # 文章分类统计
 
