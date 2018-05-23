@@ -1,5 +1,5 @@
 .post-article {
-    border-bottom: 3px #c0c0c0 double;
+    border-bottom: 3px #d0d0d0 double;
     border-radius: 4px 4px 0 0;
     padding-bottom: 5px;
     margin-bottom: 1em;
@@ -11,8 +11,13 @@
 }
 
 .post-image {
-    border: 1px #f0f0f0 solid;
     margin-top: 20px;
+}
+
+.post-image img {
+    width: 100%;
+    height: 70px;
+    max-height: 70px;
 }
 
 @media screen and (max-width: 768px) {
