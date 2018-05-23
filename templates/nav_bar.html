@@ -12,7 +12,6 @@
             </div>
 
             <div class="collapse navbar-collapse" id="navbar-obj">
-                <div class="navbar-collapse col-xs-4">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Archive<span class="caret"/></a>
@@ -38,29 +37,22 @@
                             </ul>
                         </li>
                     </ul>
-                </div>
-                <div class="navbar-collapse col-xs-4">
                     <ul class="nav navbar-nav">
                         <li>
                             <a href="{% url "collection" %}">Collection</a>
                         </li>
                     </ul>
-                </div>
-                <div class="navbar-collapse col-xs-4">
                     <ul class="nav navbar-nav">
                         <li>
                             <a href="{% url "aboutMe" %}">About Me</a>
                         </li>
                     </ul>
-                </div>
-                <div class="navbar-collapse col-xs-8">
                     <form action="{% url "search" %}" class="navbar-form navbar-left" role="search" method="get">
                         <div class="form-group">
                             <input type="text" class="form-control" name="sw" placeholder="查找:标题/正文"/>
                         </div>
                     </form>
-                </div>
-                <div class="navbar-collapse col-xs-4 navbar-right">
+                <div class="navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
                         <li>
                             <p class="navbar-text"> {% now "Y年m月d日" %}</p>

@@ -10,8 +10,10 @@ from blog.models import Article, ArticleCategory
 # 首页
 # 分页页码默认设为1
 def home(request, num=1):
-    articles_data = Article.objects.all()  # 文章
-    sidebar_category = ArticleCategory.objects.values('category').distinct().annotate(num_articles=Count('article'))
+    articles_data = Article.objects.all().order_by('-post_time')[0 + (10 * (num - 1)):9 + (10 * (num - 1))]  # 文章
+    sidebar_category = ArticleCategory.objects.values('category').distinct().annotate(
+        num_articles=Count('article'))  # 文章分类统计
+
     paginator = Paginator(articles_data, 10)  # 分页，每页10个
     try:
         articles = paginator.page(num)
@@ -93,7 +95,3 @@ def collections(request):
 
 def about_me(request):
     return render(request, 'about_me.html', locals())
-
-
-def ex(request):
-    return render(request, 'examples.html', locals())
