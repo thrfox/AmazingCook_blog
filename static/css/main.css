@@ -1,8 +1,8 @@
-#post {
+.post-article {
     border-bottom: 3px #c0c0c0 double;
     border-radius: 4px 4px 0 0;
     padding-bottom: 5px;
-    margin: 2em 0;
+    margin-bottom: 1em;
 }
 
 .post-content a {
