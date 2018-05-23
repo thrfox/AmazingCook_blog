@@ -35,5 +35,4 @@ def clear_css_img(value):
     value = re.sub(imgtag, imgurl, value)
     value = re.sub(r'<h\d>', '<p>', value)
     value = re.sub(r'</h\d>', '</p>', value)
-    print(value)
     return value

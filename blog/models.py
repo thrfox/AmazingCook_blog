@@ -62,7 +62,7 @@ class ArticleTag(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length=100, verbose_name='标题')  # 标题
     # author = models.ForeignKey(Users, verbose_name='作者')  # 作者, 默认值为用户名
-    head_image = models.URLField(max_length=200, verbose_name='文章头图片外链', blank=True)
+    head_image = models.CharField(max_length=1000, verbose_name='文章头图片外链', blank=True)
     category = models.ForeignKey(ArticleCategory, verbose_name='文章类别')  # 文章类别，选项选择
     tag = models.ManyToManyField(ArticleTag, max_length=50, verbose_name='标签')
     content = MarkdownxField(blank=True, null=True, verbose_name='正文')  # 文章正文，可为空，富表单
@@ -89,5 +89,5 @@ def from_content_get_image_url(sender, instance, *args, **kwargs):
         try:
             url = re.search(recomp, instance.content[:500]).group(0)
         except AttributeError:
-            url = 'https://www.test.com'
+            url = '/static/images/post-default.png'
         instance.head_image = url
