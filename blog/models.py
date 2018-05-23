@@ -1,10 +1,14 @@
+import re
+
 from django.db import models
-
-# 创建数据库表
-
 # 用户表
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from django.utils import timezone
 from markdownx.models import MarkdownxField
+
+
+# 创建数据库表
 
 
 class Users(models.Model):
@@ -58,6 +62,7 @@ class ArticleTag(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length=100, verbose_name='标题')  # 标题
     # author = models.ForeignKey(Users, verbose_name='作者')  # 作者, 默认值为用户名
+    head_image = models.URLField(max_length=200, verbose_name='文章头图片外链', blank=True)
     category = models.ForeignKey(ArticleCategory, verbose_name='文章类别')  # 文章类别，选项选择
     tag = models.ManyToManyField(ArticleTag, max_length=50, verbose_name='标签')
     content = MarkdownxField(blank=True, null=True, verbose_name='正文')  # 文章正文，可为空，富表单
@@ -75,3 +80,14 @@ class Article(models.Model):
     class Meta:
         ordering = ['-post_time']
         verbose_name_plural = '文章'  # 显示名称
+
+
+@receiver(pre_save, sender=Article)
+def from_content_get_image_url(sender, instance, *args, **kwargs):
+    if instance.head_image is None or instance.head_image == '':
+        recomp = re.compile(r'http.*\.(png|jpg|gif)')  # 匹配图片
+        try:
+            url = re.search(recomp, instance.content[:500]).group(0)
+        except AttributeError:
+            url = 'https://www.test.com'
+        instance.head_image = url

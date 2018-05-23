@@ -4,30 +4,35 @@
 
 {% block content %}
     <div class="col-md-8 col-xs-12">
-        {% for article in articles %}
-            <div class="post-content">
-                <div class="page-header">
-
-                    <a href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m" %}">
-                        <h2>
-                            {{ article.title }}
-                        </h2>
-                    </a>
-
-                    <h5>
-                        <small>{{ article.post_time|date:'Y年m月d日' }}</small>
-                        <a class="btn" href="{% url "archive" fil=article.category %}">{{ article.category }}</a>
-                    </h5>
+        {% for article in articles_data %}
+            <div id="post" class="row">
+                <div class="row">
+                    <div class="post-image col-md-3 col-xs-3">
+                        <img src="{{ article.head_image }}">
+                    </div>
+                    <div class="post-content col-md-9 col-xs-9">
+                        <a href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m" %}">
+                            <h3>
+                                {{ article.title }}
+                            </h3>
+                        </a>
+                        <h5>
+                            <small>{{ article.post_time|date:'Y年m月d日' }}</small>
+                            <a class="btn"
+                               href="{% url "archive" fil=article.category %}">{{ article.category }}</a>
+                        </h5>
+                    </div>
                 </div>
-
-                <p>{{ article.content|custom_markdown|truncatechars_html:100 }}</p>
-                {% if article.content|length > 100 %}
-                    <p>
-                        <a class="btn"
-                           href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m" %}">Detail
-                            »</a>
-                    </p>
-                {% endif %}
+                <div class="col-md-offset-3 col-xs-offset-3">
+                    <p>{{ article.content|custom_markdown|truncatechars_html:80|clear_css_img }}</p>
+                    {% if article.content|length > 80 %}
+                        <p>
+                            <a class="btn"
+                               href="{% url "articleDetail" id=article.id year=article.post_time|date:"Y" month=article.post_time|date:"m" %}">Detail
+                                »</a>
+                        </p>
+                    {% endif %}
+                </div>
             </div>
         {% endfor %}
 
@@ -47,7 +52,7 @@
             {% endif %}
         </div>
     </div>
-    <div class="col-md-4 col-xs-12">
+    <div id="sidebar_container" class="col-md-4 col-xs-12">
         <div id="home-category" class="sidebar">
             <h3>文章分类</h3>
             <ul>
